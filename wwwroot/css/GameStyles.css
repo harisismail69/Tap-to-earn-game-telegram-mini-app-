@@ -1,0 +1,294 @@
+﻿body {
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.coin-display {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.coin-count {
+    font-size: 48px;
+    margin-right: 10px;
+}
+
+.tap-button-container {
+    margin-bottom: 20px;
+}
+
+    .tap-button-container button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+    }
+
+        .tap-button-container button img {
+            width: 200px; /* Increase the size of the coin image button */
+            height: 200px;
+        }
+
+.energy-bar {
+    width: 60%; /* Reduce the width of the energy bar */
+    background-color: #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 auto 20px auto; /* Added margin-bottom */
+}
+
+.energy-bar-fill {
+    height: 30px;
+    background-color: #ffd700;
+    text-align: center;
+    line-height: 30px;
+    color: black;
+    font-weight: bold;
+    width: 0; /* Start with 0% width */
+}
+
+.earn-link-container {
+    margin-top: 20px;
+}
+
+.earn-link {
+    background-color: #ffd700;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px; /* Slightly smaller font size */
+    font-weight: bold;
+    margin: 10px; /* Add some space between the buttons */
+}
+
+    .earn-link:hover {
+        background-color: #ffbf00;
+    }
+
+.earn-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.earn-button {
+    background-color: #ffd700;
+    color: black;
+    padding: 12px 25px; /* Reduce padding */
+    border: none;
+    border-radius: 10px;
+    font-size: 18px; /* Slightly smaller font size */
+    font-weight: bold;
+    margin: 15px 0;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .earn-button:hover {
+        background-color: #ffbf00;
+        transform: scale(1.05);
+    }
+
+.claim-daily-reward-container {
+    margin-top: 20px;
+}
+
+    .claim-daily-reward-container button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 0; /* Remove padding */
+    }
+
+        .claim-daily-reward-container button img {
+            width: 80px; /* Smaller than the coin button */
+            height: 80px;
+            background-color: #2e2152; /* Match the app background color */
+            border-radius: 10px; /* Optional: Add border radius if needed */
+            padding: 10px; /* Optional: Add padding if needed */
+        }
+
+.boost-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.boost-section {
+    margin-top: 30px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.boost-option {
+    margin-top: 20px;
+}
+
+    .boost-option button {
+        background-color: #ffd700;
+        color: black;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+        .boost-option button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+    .boost-option p {
+        margin-top: 10px;
+        font-size: 16px;
+        color: black;
+    }
+
+/* New styles for upgrade section */
+.upgrade-section {
+    margin-top: 20px;
+}
+
+#upgradeDescription {
+    font-size: 14px;
+    color: #333;
+}
+
+#insufficientCoinsMessage {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+/* Add styles for the new elements if necessary */
+.boost-container .coin-display {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.boost-container .coin-count {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.boost-container .coin-text {
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.boost-container .energy-bar-levels {
+    margin-top: 20px;
+}
+
+.energy-bar-levels-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-top: 20px;
+    background: #ccc;
+    height: 2px;
+}
+
+.energy-bar-level-dot {
+    width: 20px;
+    height: 20px;
+    background: #ccc;
+    border-radius: 50%;
+    position: relative;
+    top: -10px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+    .energy-bar-level-dot.active {
+        background: #ffd700;
+    }
+/* Add to GameStyles.css */
+
+.statistics-container {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .statistics-container h1 {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+
+.stat-item {
+    margin: 20px 0;
+    font-size: 24px;
+}
+
+.stat-title {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.back-link-container {
+    margin-top: 30px;
+}
+
+.back-link {
+    background-color: #ffd700;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+    .back-link:hover {
+        background-color: #ffbf00;
+    }
+
+/* Add this animation */
+@keyframes coinAnimation {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Apply the animation to the button when clicked */
+.tap-button-container button.clicked {
+    animation: coinAnimation 0.5s;
+}

@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Tap Earn Game</title>
+    <link rel="stylesheet" type="text/css" href="~/css/GameStyles.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.11/signalr.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var connection = new signalR.HubConnectionBuilder().withUrl("/energyHub").build();
+
+            connection.on("ReceiveEnergyUpdate", function (energy) {
+                updateEnergyBar(energy);
+            });
+
+            connection.start().then(function () {
+                console.log("SignalR Connected.");
+            }).catch(function (err) {
+                return console.error(err.toString());
+            });
+
+            $("#tapButton").click(function (event) {
+                event.preventDefault();
+                $.post("/Home/CanTap", function (data) {
+                    if (data.success) {
+                        $('.coin-count').text(data.coins);
+                        updateEnergyBar(data.energy);
+                    } else {
+                        console.log("Can't tap yet!");
+                    }
+                });
+            });
+
+            function updateEnergyBar(newEnergy) {
+                var energyBar = $('#energy-bar-fill');
+                var energyText = $('#energy-text');
+
+                energyBar.css('width', newEnergy + '%');
+                energyText.text(newEnergy + ' / 100');
+            }
+
+            // Initialize energy bar
+            var initialEnergy = @Model.CurrentEnergy;
+            updateEnergyBar(initialEnergy);
+        });
+
+    </script>
+</head>
+<body>
+    <div class="game-container">
+        <div class="coin-display">
+            <span class="coin-count">@Model?.Coins</span>
+            <span class="coin-text">Coins</span>
+        </div>
+        <div class="tap-button-container">
+            <form action="/Home/Tap" method="post">
+                <button id="tapButton" type="submit">
+                    <img src="~/images/coin.png" alt="Tap to Earn">
+                </button>
+            </form>
+        </div>
+
+        <div class="energy-bar">
+            <div id="energy-bar-fill" class="energy-bar-fill" style="width: @(Model?.CurrentEnergy ?? 100)%;">
+                <span id="energy-text">@Model?.CurrentEnergy / 100</span>
+            </div>
+        </div>
+
+        <div class="earn-link-container">
+            <a href="/Home/Earn" class="earn-link">Earn Rewards</a>
+            <a href="/Home/Boost" class="earn-link">Boost</a>
+            <a href="/Home/DailyRewards" class="earn-link">Claim Daily Reward!</a>
+            <a href="/Home/Statistics" class="earn-link">Statistics</a>
+        </div>
+    </div>
+</body>
+</html>

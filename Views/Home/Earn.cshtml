@@ -1,0 +1,30 @@
+﻿@model coinbase.Models.User
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Earn Coins</title>
+    <link rel="stylesheet" type="text/css" href="~/css/GameStyles.css" />
+</head>
+<body>
+    <div class="game-container">
+        <h2>Earn Coins</h2>
+        <div class="earn-options">
+            <button class="earn-button" id="watchAd">Watch an Ad (5000 coins)</button>
+            <button class="earn-button" id="followX">Follow on X (5000 coins)</button>
+            <button class="earn-button" id="followInstagram">Follow on Instagram (5000 coins)</button>
+            <button class="earn-button" id="subscribeYouTube">Subscribe on YouTube (5000 coins)</button>
+            <button class="earn-button" id="followFacebook">Follow on Facebook (5000 coins)</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".earn-button").click(function () {
+                alert("This feature is not implemented yet.");
+            });
+        });
+    </script>
+</body>
+</html>

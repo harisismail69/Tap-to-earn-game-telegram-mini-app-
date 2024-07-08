@@ -1,0 +1,147 @@
+﻿@model coinbase.Models.User
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Boost Options</title>
+    <link rel="stylesheet" type="text/css" href="~/css/GameStyles.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
+</head>
+<body>
+    <div class="boost-container">
+        <h1>Boost Options</h1>
+        <div class="coin-display">
+            <span class="coin-count">@Model?.Coins</span>
+            <span class="coin-text">Coins</span>
+        </div>
+        <div class="boost-section">
+            <h2>Multi-touch Feature</h2>
+            <p>Multi-touch increases the number of coins you earn per tap. Unlock higher levels for more coins per tap.</p>
+
+            <div class="boost-option">
+                <button id="multiTouchButton"
+                @if (Model.IsMultiTouchActive || DateTime.Now < Model.MultiTouchCooldownEnd)
+                {
+                    <text>disabled</text>
+                }
+                    onclick="activateMultiTouch()">Multi-touch Level @Model.MultiTouchLevel</button>
+                <p id="cooldownText">
+                    @if (Model.IsMultiTouchActive)
+                    {
+                        <text>Multi-touch is active!</text>
+                    }
+                    else if (DateTime.Now < Model.MultiTouchCooldownEnd)
+                    {
+                        <text>Next Multi-touch available in: @Model.MultiTouchCooldownEnd.Subtract(DateTime.Now).ToString(@"dd\:hh\:mm\:ss")</text>
+                    }
+                    else
+                    {
+                        <text>Multi-touch is available!</text>
+                    }
+                </p>
+            </div>
+
+            <div class="boost-option upgrade-section">
+                <button id="upgradeMultiTouchButton"
+                @if (Model.MultiTouchLevel >= 5 || Model.Coins < Model.CoinsToUnlockNextLevel)
+                {
+                    <text>disabled</text>
+                }
+                    onclick="upgradeMultiTouch()">Upgrade Multi-touch (Cost: @Model.CoinsToUnlockNextLevel coins)</button>
+                <p id="upgradeDescription">Upgrading Multi-touch increases the number of coins per tap.</p>
+                <p id="insufficientCoinsMessage" class="hidden">Insufficient coins!</p>
+            </div>
+        </div>
+
+        <div class="boost-section">
+            <h2>Increase Energy-bar</h2>
+            <p>Increase your energy bar's capacity. Unlock higher levels for more energy capacity.</p>
+
+            <div class="boost-option">
+                <button id="increaseEnergyBarButton"
+                @if (Model.EnergyBarLevel >= 5 || Model.Coins < (Model.EnergyBarLevel * 1000))
+                {
+                    <text>disabled</text>
+                }
+                    onclick="upgradeEnergyBar()">Increase Energy-bar Level @Model.EnergyBarLevel (Cost: @(Model.EnergyBarLevel * 1000) coins)</button>
+                <p id="energyBarUpgradeText">Upgrade to increase your energy capacity by 100.</p>
+                <div class="energy-bar-upgrade-visual">
+                    <span>Levels: </span>
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <span class="dot @if (Model.EnergyBarLevel >= i) {
+                    <text>active</text>
+ }"></span>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="boost-section">
+            <h2>Refill Tank</h2>
+            <p>Instantly regenerate your energy bar. You have 3 free refills every 24 hours.</p>
+            <div class="boost-option">
+                <form action="/Home/RefillTank" method="post">
+                    <button id="refillTankButton" type="submit"
+                    @if (Model.DailyRefillsUsed >= 3)
+                    {
+                        <text>disabled</text>
+                    }>
+                        Refill Tank (Used: @Model.DailyRefillsUsed / 3)
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function activateMultiTouch() {
+            $.post("/Home/ActivateMultiTouch", function (data) {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert("Multi-touch activation failed.");
+                }
+            });
+        }
+
+        function upgradeMultiTouch() {
+            $.post("/Home/UpgradeMultiTouch", function (data) {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert("Upgrade failed. Insufficient coins or max level reached.");
+                }
+            });
+        }
+
+        function upgradeEnergyBar() {
+            $.post("/Home/UpgradeEnergyBar", function (data) {
+                if (data.success) {
+                    location.reload();
+                } else {
+                    alert("Upgrade failed. Insufficient coins or max level reached.");
+                }
+            });
+        }
+
+        "use strict";
+
+        var connection = new signalR.HubConnectionBuilder().withUrl("/energyHub").build();
+
+        connection.on("ReceiveEnergyUpdate", function (currentEnergy, maxEnergyCapacity) {
+            var energyElement = document.getElementById("energyDisplay");
+            if (energyElement) {
+                energyElement.textContent = `Energy: ${currentEnergy}/${maxEnergyCapacity}`;
+            }
+        });
+
+        connection.start().then(function () {
+            console.log("SignalR Connected.");
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+    </script>
+</body>
+</html>

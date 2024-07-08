@@ -1,0 +1,78 @@
+﻿@model coinbase.Models.User
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Daily Rewards</title>
+    <link rel="stylesheet" type="text/css" href="~/css/GameStyles.css" />
+    <style>
+        .reward-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            
+        }
+
+        .reward-content {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+            .reward-content h2 {
+                font-size: 2em;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            .reward-content p {
+                font-size: 1.2em;
+                color: #555;
+            }
+
+        .reward-info {
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+            .reward-info p {
+                margin: 10px 0;
+            }
+
+        .navigation a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+            .navigation a:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <div class="reward-container">
+        <div class="reward-content">
+            <h2>Daily Rewards</h2>
+            <p>@ViewBag.RewardMessage</p>
+            <div class="reward-info">
+                <p>Coins: @Model.Coins</p>
+                <p>Daily Reward Streak: @Model.DailyRewardStreak</p>
+            </div>
+            <div class="navigation">
+                <a href="/">Back to Game</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

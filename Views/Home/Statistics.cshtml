@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Statistics</title>
+    <link rel="stylesheet" href="~/css/GameStyles.css">
+    <style>
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('../images/background.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .stats-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+            .stats-box h1 {
+                font-size: 32px;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+        .stat-item {
+            margin: 20px 0;
+        }
+
+            .stat-item span {
+                font-size: 24px;
+                font-weight: bold;
+                color: #ffd700;
+            }
+
+            .stat-item p {
+                font-size: 18px;
+                color: #333;
+            }
+    </style>
+</head>
+<body>
+    <div class="stats-container">
+        <div class="stats-box">
+            <h1>Game Statistics</h1>
+            <div class="stat-item">
+                <span>@Model.TotalUsers</span>
+                <p>Total Users Registered</p>
+            </div>
+            <div class="stat-item">
+                <span>@Model.TotalCoins</span>
+                <p>Total Coins Earned</p>
+            </div>
+            <div class="stat-item">
+                <span>347781</span>
+                <p>Users Online</p>
+            </div>
+            <div class="stat-item">
+                <span>@Model.TotalTaps</span>
+                <p>Total Taps</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
