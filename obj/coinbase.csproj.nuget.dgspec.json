@@ -1,28 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Haris\\Desktop\\New folder\\coinbase\\coinbase.csproj": {}
+    "/workspaces/Tap-to-earn-game-telegram-mini-app-/coinbase.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Haris\\Desktop\\New folder\\coinbase\\coinbase.csproj": {
+    "/workspaces/Tap-to-earn-game-telegram-mini-app-/coinbase.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Haris\\Desktop\\New folder\\coinbase\\coinbase.csproj",
+        "projectUniqueName": "/workspaces/Tap-to-earn-game-telegram-mini-app-/coinbase.csproj",
         "projectName": "coinbase",
-        "projectPath": "C:\\Users\\Haris\\Desktop\\New folder\\coinbase\\coinbase.csproj",
-        "packagesPath": "C:\\Users\\Haris\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Haris\\Desktop\\New folder\\coinbase\\obj\\",
+        "projectPath": "/workspaces/Tap-to-earn-game-telegram-mini-app-/coinbase.csproj",
+        "packagesPath": "/home/codespace/.nuget/packages/",
+        "outputPath": "/workspaces/Tap-to-earn-game-telegram-mini-app-/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Haris\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/codespace/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -84,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.402/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
